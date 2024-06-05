@@ -7,6 +7,7 @@
 
 import React from 'react';
 import type {PropsWithChildren} from 'react';
+import { withAuthenticator } from 'aws-amplify-react-native';
 import {
   SafeAreaView,
   ScrollView,
@@ -116,3 +117,4 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+export default withAuthenticator(App)
