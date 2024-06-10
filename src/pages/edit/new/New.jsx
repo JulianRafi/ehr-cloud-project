@@ -8,19 +8,12 @@ import { auth, db, storage } from "../../firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { disableNetwork, enableNetwork } from "firebase/firestore"; 
-import { useNavigate } from "react-router-dom";
 
 const New = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
   const [per, setPerc] = useState(null);
   const [network, setNetwork] = useState(1);
-
-  const navigate = useNavigate();
- 
-  const handleNavigateToSignUp = () => {
-    navigate("..");
-  };
 
   useEffect(()=>{
     const uploadFile = ()=>{
@@ -97,20 +90,18 @@ const New = ({ inputs, title }) => {
   const handleAdd = async(e) =>{
     if (network) {
       e.preventDefault()
-      // const res = await signInWithEmailAndPassword(auth, data.email, data.password);
-      await addDoc(collection(db, "users", e.target.id), {
+      const res = await signInWithEmailAndPassword(auth, data.email, data.password);
+      await setDoc(doc(db, "users", res.user.uid), {
         ...data,
         timeStamp: serverTimestamp()
       });
-
-      handleNavigateToSignUp();
   } else {
 
   }
   }
   return (
     <div className="new">
-      {/* <Sidebar /> */}
+      <Sidebar />
       <div className="newContainer">
         <Navbar />
         <div className="top">
