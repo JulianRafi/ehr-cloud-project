@@ -1,23 +1,12 @@
 export const userColumns = [
   { field: "id", headerName: "ID", width: 70 },
 
-  // {
-  //   field: "user",
-  //   headerName: "User",
-  //   width: 230,
-  //   renderCell: (params) => {
-  //     return (
-  //       <div>
-  //         {params.row.username}
-  //       </div>
-  //     );
-  //   },
-  // },
   {
     field: "email",
     headerName: "User Email",
     width: 230,
   },
+
   {
     field: "displayName",
     headerName: "Patient Name",
