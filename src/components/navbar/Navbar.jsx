@@ -8,9 +8,22 @@ import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutline
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
+import { signOut } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { auth, db } from "../../firebase"
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const { dispatch } = useContext(DarkModeContext);
+  const [loggedIn, setLoggedIn] = useState(auth);
+  const navigate = useNavigate();
+
+  const signOutHandler = () => {
+    signOut(auth).then(() => {
+    }).catch((error) => {});
+    setLoggedIn(false);
+    navigate("../../login");
+  }
 
   return (
     <div className="navbar">
@@ -20,10 +33,9 @@ const Navbar = () => {
           <SearchOutlinedIcon />
         </div>
         <div className="items">
-          <div className="item">
-            <LanguageOutlinedIcon className="icon" />
-            English
-          </div>
+          <button className="item" onClick={signOutHandler}>
+            Logout
+          </button>
           <div className="item">
             <DarkModeOutlinedIcon
               className="icon"

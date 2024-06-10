@@ -1,4 +1,4 @@
-import "./new.scss";
+import "./edit.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
@@ -9,7 +9,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "fire
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { disableNetwork, enableNetwork } from "firebase/firestore"; 
 
-const New = ({ inputs, title }) => {
+const Edit = ({ inputs, title, userData }) => {
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
   const [per, setPerc] = useState(null);
@@ -152,4 +152,4 @@ const New = ({ inputs, title }) => {
   );
 };
 
-export default New;
+export default Edit;

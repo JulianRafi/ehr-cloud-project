@@ -1,16 +1,19 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
+import { Modal } from '@mui/material';
 import { userColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { collection, getDocs, onSnapshot, disableNetwork, enableNetwork } from "firebase/firestore";
-import { db } from "../../firebase"
-
+import { setDoc, serverTimestamp, query, where, collection, getDocs, onSnapshot, disableNetwork, enableNetwork, deleteDoc, doc } from "firebase/firestore";
+import { auth, db } from "../../firebase"
+import Edit from "../../pages/edit/Edit";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const Datatable = () => {
   const [data, setData] = useState([]);
   const [network, setNetwork] = useState(1);
   const [status, setStatus] = useState(0);
+  const [open, setOpen] = useState(false);
 
   const toggleNetwork = (e) => {
     network ? setOffline() : setOnline();
@@ -32,7 +35,12 @@ const Datatable = () => {
     const fetchData = async () => {
       const querySnapshot = await getDocs(collection(db, "users"));
       querySnapshot.forEach((doc) => {
-        list.push({ id: doc.id, ...doc.data() })
+        if (auth.currentUser.email == "root@mail.com") {
+          list.push({id: doc.id, ...doc.data() })
+        }
+        else if (doc.data()['email'] == auth.currentUser.email) {
+          list.push({ id: doc.id, ...doc.data() })
+        }
       });
       setData(list);
       setStatus(querySnapshot.metadata.fromCache);
@@ -44,7 +52,13 @@ const Datatable = () => {
     const fetchData = async () => {
       const querySnapshot = await getDocs(collection(db, "users"));
       querySnapshot.forEach((doc) => {
-        list.push({ id: doc.id, ...doc.data() })
+        if (auth.currentUser.email == "root@mail.com") {
+          list.push({id: doc.id, ...doc.data() })
+        }
+        else if (doc.data()['email'] == auth.currentUser.email) {
+          list.push({ id: doc.id, ...doc.data() })
+        }
+        
       });
       setData(list);
       setStatus(querySnapshot.metadata.fromCache);
@@ -53,22 +67,35 @@ const Datatable = () => {
     fetchData()
   },[])
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
+    await deleteDoc(doc(db, "users", id));
     setData(data.filter((item) => item.id !== id));
   };
 
+  // const handleClose = () => setOpen(false);
+
+  const handleEdit = async (id) => {
+    // setOpen(true)
+  };
+
+  // const finalizeEdit = async (id) => {
+  //   await setDoc(doc(db, "users", id), {
+  //     ...data,
+  //     timeStamp: serverTimestamp()
+  //   });
+  // }
 
   const actionColumn = [
     {
       field: "action",
-      headerName: "Action",
+      headerName: "Delete",
       width: 200,
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
-            </Link>
+              <div className="viewButton"
+              onClick={() => handleEdit(params.row.id)}
+              >Edit</div>
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
@@ -98,6 +125,14 @@ const Datatable = () => {
         rowsPerPageOptions={[9]}
         checkboxSelection
       />
+      {/* <Modal
+        open = {open}
+        onClose = {handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        tes
+      </Modal> */}
     </div>
   );
 };

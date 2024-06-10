@@ -151,7 +151,7 @@ const New = ({ inputs, title }) => {
                   onChange={handleInput}/>
                 </div>
               ))}
-              <button disabled={per !== null && per < 100} type="submit">Send</button>
+              <button type="submit">Send</button>
             </form>
             <button onClick={toggleNetwork}>Toggle Network</button>
           </div>
