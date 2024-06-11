@@ -27,22 +27,37 @@ const SignUp = () => {
 
   return (
     <div className="signup">
-      <form onSubmit={handleSignUp}>
-        <input
-          type="email"
-          placeholder="email"
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-        />
-        <input
-          type="password"
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        />
-        <button type="submit">Sign Up</button>
-        {error && <span>Could not create account. Please try again.</span>}
-      </form>
+      <img className="wave" src="LeftWaveIllustration.png" alt="Wave Illustration" />
+      <div className="container">
+        <div className="img">
+          <img className="doctors" src="MedicineIllustration.png" alt="Medicine Illustration" />
+        </div>
+        <div className="signup-container">
+          <form onSubmit={handleSignUp}>
+            <h2>Sign Up</h2>
+            <div className="input-email">
+              <input
+                type="email"
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                className="input"
+              />
+            </div>
+            <div className="input-password">
+              <input
+                type="password"
+                placeholder="New Password"
+                onChange={(e) => setPassword(e.target.value)}
+                value={password}
+                className="input"
+              />
+            </div>
+            <button className="submit" type="submit">Sign Up</button>
+            {error && <span className="errorMessage">Could not create account. Please try again.</span>}
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
