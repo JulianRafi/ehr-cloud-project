@@ -138,3 +138,5 @@ const Datatable = () => {
 };
 
 export default Datatable;
+
+// how do i hide add new link if (auth.currentUser.email == "root@mail.com")
