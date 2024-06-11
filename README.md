@@ -1,5 +1,5 @@
 # EHR System
-
+This project is a comprehensive Electronic Health Record (EHR) system designed to work both offline and online, ensuring seamless access to patient information regardless of network connectivity. This project was made to fulfill the requirement of the MIE-212614 Cloud Computing class.
 
 
 # Overview
