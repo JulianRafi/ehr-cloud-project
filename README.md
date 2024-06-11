@@ -1,6 +1,6 @@
 # EHR System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 # Overview
 The EHR system is designed to facilitate the management of patient records. It allows healthcare providers to access, update, and store patient information securely, whether they are connected to the internet or working offline. Key features include patient data management, appointment scheduling, and secure data synchronization between offline and online modes.
