@@ -14,6 +14,7 @@ const Datatable = () => {
   const [network, setNetwork] = useState(1);
   const [status, setStatus] = useState(0);
   const [open, setOpen] = useState(false);
+  const [isRootUser, setIsRootUser] = useState(false);
 
   const toggleNetwork = (e) => {
     network ? setOffline() : setOnline();
@@ -31,11 +32,17 @@ const Datatable = () => {
     console.log("network online")
   }
 
+  useEffect(() => {
+    if (auth.currentUser.email === "admin@mail.com") {
+      setIsRootUser(true);
+    }
+  }, []);
+
   let list = []
     const fetchData = async () => {
       const querySnapshot = await getDocs(collection(db, "users"));
       querySnapshot.forEach((doc) => {
-        if (auth.currentUser.email == "root@mail.com") {
+        if (auth.currentUser.email == "admin@mail.com") {
           list.push({id: doc.id, ...doc.data() })
         }
         else if (doc.data()['email'] == auth.currentUser.email) {
@@ -52,7 +59,7 @@ const Datatable = () => {
     const fetchData = async () => {
       const querySnapshot = await getDocs(collection(db, "users"));
       querySnapshot.forEach((doc) => {
-        if (auth.currentUser.email == "root@mail.com") {
+        if (auth.currentUser.email == "admin@mail.com") {
           list.push({id: doc.id, ...doc.data() })
         }
         else if (doc.data()['email'] == auth.currentUser.email) {
@@ -107,15 +114,19 @@ const Datatable = () => {
       },
     },
   ];
+
+  
   return (
     <div className="datatable">
       <div className="datatableTitle">
         Add New User
         <button onClick={toggleNetwork} className="link"> {network ? (<>Online</>) : (<>Offline</>)} </button>
         <button onClick={fetchData} className="link"> {status ? (<>From Cache</>) : (<>From Cloud</>)} </button>
+        {isRootUser && (
         <Link to="/users/new" className="link">
           Add New
         </Link>
+        )}
       </div>
       <DataGrid
         className="datagrid"

@@ -151,7 +151,7 @@ const New = ({ inputs, title }) => {
                   onChange={handleInput}/>
                 </div>
               ))}
-              <button type="submit">Send</button>
+              <button  type="submit">Send</button>
             </form>
             <button onClick={toggleNetwork}>Toggle Network</button>
           </div>
