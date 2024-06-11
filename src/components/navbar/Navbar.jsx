@@ -1,0 +1,72 @@
+import "./navbar.scss";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import FullscreenExitOutlinedIcon from "@mui/icons-material/FullscreenExitOutlined";
+import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
+import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
+import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
+import { DarkModeContext } from "../../context/darkModeContext";
+import { useContext } from "react";
+import { signOut } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { auth, db } from "../../firebase"
+import { useNavigate } from "react-router-dom";
+
+const Navbar = () => {
+  const { dispatch } = useContext(DarkModeContext);
+  const [loggedIn, setLoggedIn] = useState(auth);
+  const navigate = useNavigate();
+
+  const signOutHandler = () => {
+    signOut(auth).then(() => {
+    }).catch((error) => {});
+    setLoggedIn(false);
+    navigate("../../login");
+  }
+
+  return (
+    <div className="navbar">
+      <div className="wrapper">
+        <div className="search">
+          <input type="text" placeholder="Search..." />
+          <SearchOutlinedIcon />
+        </div>
+        <div className="items">
+          <button className="item" onClick={signOutHandler}>
+            Logout
+          </button>
+          <div className="item">
+            <DarkModeOutlinedIcon
+              className="icon"
+              onClick={() => dispatch({ type: "TOGGLE" })}
+            />
+          </div>
+          {/* <div className="item">
+            <FullscreenExitOutlinedIcon className="icon" />
+          </div> */}
+          {/* <div className="item">
+            <NotificationsNoneOutlinedIcon className="icon" />
+            <div className="counter"></div>
+          </div>
+          <div className="item">
+            <ChatBubbleOutlineOutlinedIcon className="icon" />
+            <div className="counter"></div> */}
+          {/* </div> */}
+          <div className="item">
+            <ListOutlinedIcon className="icon" />
+          </div>
+          <div className="item">
+            <img
+              src="https://ugm.ac.id/wp-content/uploads/2022/11/LOGO-UGM-BAKU-tnp-back-grou-300x300.jpg"
+              alt=""
+              className="avatar"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;
