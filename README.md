@@ -42,3 +42,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+# Contributors
+<img src="https://media.licdn.com/dms/image/D5603AQE9vkCK-IFasw/profile-displayphoto-shrink_800_800/0/1714238782648?e=1723680000&v=beta&t=hHsdN7PYr057QbC8wFoNgtDD3GyeHADxAsgHfmT37fE" width="60px;"/><br /><sub>[JulianRafi](https://github.com/JulianRafi)
+
+<img src="https://media.licdn.com/dms/image/C5603AQHfnw0J_1aTyQ/profile-displayphoto-shrink_800_800/0/1668056793331?e=1723680000&v=beta&t=p_Svtz-J5_4RygC2KXbQXZsWATg2hk6VK3Cb41quLHY" width="60px;"/><br /><sub>[ydnicpr](https://github.com/ydnicpr)
+
+
+
+
+
+
