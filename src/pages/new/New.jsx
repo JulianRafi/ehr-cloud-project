@@ -1,11 +1,9 @@
 import "./new.scss";
-import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useEffect, useState } from "react";
 import { addDoc, collection, doc, serverTimestamp, setDoc } from "firebase/firestore"; 
 import { auth, db, storage } from "../../firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { disableNetwork, enableNetwork } from "firebase/firestore"; 
 import { useNavigate } from "react-router-dom";
@@ -15,6 +13,7 @@ const New = ({ inputs, title }) => {
   const [data, setData] = useState({});
   const [per, setPerc] = useState(null);
   const [network, setNetwork] = useState(1);
+  const [currentId, setCurrentId] = useState(null);
 
   const navigate = useNavigate();
  
@@ -61,7 +60,11 @@ const New = ({ inputs, title }) => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setData((prev=>({...prev, img:downloadURL})))
             console.log('File available at', downloadURL);
+            setDoc(doc(db, "users", currentId), {
+              img:downloadURL
+            })
           });
+
         }
       );
       
@@ -96,6 +99,7 @@ const New = ({ inputs, title }) => {
 
   const handleAdd = async(e) =>{
     if (network) {
+      setCurrentId(e.target.id)
       e.preventDefault()
       // const res = await signInWithEmailAndPassword(auth, data.email, data.password);
       await addDoc(collection(db, "users", e.target.id), {
@@ -115,6 +119,7 @@ const New = ({ inputs, title }) => {
         <Navbar />
         <div className="top">
           <h1>{title}</h1>
+          <button className="toggleNetworkBtn" onClick={toggleNetwork}>Toggle Network</button>
         </div>
         <div className="bottom">
           <div className="left">
@@ -151,9 +156,8 @@ const New = ({ inputs, title }) => {
                   onChange={handleInput}/>
                 </div>
               ))}
-              <button type="submit">Send</button>
+              <button className="submitBtn" type="submit">Send</button>
             </form>
-            <button onClick={toggleNetwork}>Toggle Network</button>
           </div>
         </div>
       </div>
