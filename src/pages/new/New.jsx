@@ -11,6 +11,7 @@ import { disableNetwork, enableNetwork } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 const New = ({ inputs, title }) => {
+  const [users, setUsers] = useState([]);
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
   const [per, setPerc] = useState(null);

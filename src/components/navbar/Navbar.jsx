@@ -1,11 +1,5 @@
 import "./navbar.scss";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import FullscreenExitOutlinedIcon from "@mui/icons-material/FullscreenExitOutlined";
-import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
-import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
-import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
 import { signOut } from "firebase/auth";
@@ -13,11 +7,15 @@ import { useEffect, useState } from "react";
 import { auth, db } from "../../firebase"
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({email}) => {
   const { dispatch } = useContext(DarkModeContext);
   const [loggedIn, setLoggedIn] = useState(auth);
   const navigate = useNavigate();
   const [isSidebarVisible, setSidebarVisible] = useState(false);
+
+  const handleUsersClick = () => {
+    navigate(`/users?email=${email}`); // Use email from props
+  };
 
   const signOutHandler = () => {
     signOut(auth).then(() => {
@@ -25,10 +23,6 @@ const Navbar = () => {
     setLoggedIn(false);
     navigate("../../login");
   }
-
-  const handleUsersClick = () => {
-    navigate('/users');
-  };
 
   const showSidebar = () => {
     setSidebarVisible(true);
@@ -59,7 +53,7 @@ const Navbar = () => {
                 <SearchOutlinedIcon />
               </div>
               <li className="hideOnMobile">
-                <a href="#" className="nav-link">Home</a>
+                <a href="#" className="nav-link" onClick={() => navigate("/home")}>Home</a>
               </li>
               <li className="hideOnMobile">
                 <a href="#" className="nav-link" onClick={handleUsersClick}>Users</a>
@@ -90,10 +84,10 @@ const Navbar = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link">Home</a>
+                <a href="#" className="nav-link" onClick={() => navigate("/home")}>Home</a>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link">Users</a>
+                <a href="#" className="nav-link" onClick={() => navigate(`/users?email=${email}`)}>Users</a>
               </li>
               <li className="nav-item">
                 <a href="#" className="nav-link">Procedures</a>
@@ -107,44 +101,6 @@ const Navbar = () => {
             </ul>
             </div>
           </nav>
-            {/* <div className="logout">
-              <button className="logoutbtn" onClick={signOutHandler}>
-                Logout
-              </button>
-            </div> */}
-            {/* <div className="item">
-              <img
-                src="https://ugm.ac.id/wp-content/uploads/2022/11/LOGO-UGM-BAKU-tnp-back-grou-300x300.jpg"
-                alt=""
-                className="avatar"
-              />
-            </div> */}
-
-        {/* <div className="logout">
-          <button className="logoutbtn" onClick={signOutHandler}>
-            Logout
-          </button> */}
-          {/* <div className="item">
-            <DarkModeOutlinedIcon
-              className="icon"
-              onClick={() => dispatch({ type: "TOGGLE" })}
-            />
-          </div>
-          <div className="item">
-            <FullscreenExitOutlinedIcon className="icon" />
-          </div>
-          <div className="item">
-            <NotificationsNoneOutlinedIcon className="icon" />
-            <div className="counter"></div>
-          </div>
-          <div className="item">
-            <ChatBubbleOutlineOutlinedIcon className="icon" />
-            <div className="counter"></div>
-          </div>
-          <div className="item">
-            <ListOutlinedIcon className="icon" />
-          </div>
-        </div> */}
       </div>
     </div>
   );
