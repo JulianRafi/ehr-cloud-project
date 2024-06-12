@@ -53,10 +53,16 @@ const Navbar = ({email}) => {
                 <SearchOutlinedIcon />
               </div>
               <li className="hideOnMobile">
-                <a href="#" className="nav-link" onClick={() => navigate("/home")}>Home</a>
+                <a href="#" className="nav-link" onClick={() => navigate("/")}>Home</a>
               </li>
               <li className="hideOnMobile">
-                <a href="#" className="nav-link" onClick={() => navigate("`/users?email=${email}`")}>Users</a>
+                <a href="#" className="nav-link" onClick={() => {
+                  const email = localStorage.getItem("loggedInUserEmail");
+                  if (email) {
+                    navigate(`/users?email=${email}`);
+                  } else {
+                  }
+                }}>Users</a>
               </li>
               <li className="hideOnMobile">
                 <a href="#" className="nav-link">Procedures</a>
@@ -84,10 +90,16 @@ const Navbar = ({email}) => {
                 </a>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link" onClick={() => navigate("/home")}>Home</a>
+                <a href="#" className="nav-link" onClick={() => navigate("/")}>Home</a>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link" onClick={() => navigate(`/users?email=${email}`)}>Users</a>
+                <a href="#" className="nav-link" onClick={() => {
+                  const email = localStorage.getItem("loggedInUserEmail");
+                  if (email) {
+                    navigate(`/users?email=${email}`);
+                  } else {
+                  }
+                }}>Users</a>
               </li>
               <li className="nav-item">
                 <a href="#" className="nav-link">Procedures</a>

@@ -1,5 +1,5 @@
 export const userColumns = [
-  { field: "id", headerName: "ID", width: 70 },
+  { field: "id", headerName: "ID", width: 270 },
 
   {
     field: "email",
@@ -12,6 +12,25 @@ export const userColumns = [
     headerName: "Patient Name",
     width: 230,
   },
+
+  {
+    field: "timeStamp",
+    headerName: "Date",
+    width: 230,
+    renderCell: (params) => {
+      const parseTimestamp = ({ seconds, nanoseconds }) => {
+        const milliseconds = seconds * 1000 + nanoseconds / 1000000;
+        const date = new Date(milliseconds);
+        return isNaN(date) ? "Invalid Date" : date.toLocaleDateString();
+      };
+
+      const formattedDate = parseTimestamp(params.row.timeStamp);
+      return (
+        <span>{formattedDate}</span>
+      );
+    },
+  },
+
   {
     field: "hospitalID",
     headerName: "Patient ID",

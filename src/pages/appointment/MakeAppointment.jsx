@@ -32,12 +32,12 @@ const MakeAppointment = () => {
     e.preventDefault();
     if (selectedUser) {
       await addDoc(collection(db, "appointments"), {
-        userId: selectedUser.id,
-        patientName: selectedUser.name,
+        userId: selectedUser.hospitalID,
+        patientName: selectedUser.displayName,
         ...appointmentDetails,
         timeStamp: serverTimestamp(),
       });
-      navigate("/appointments"); // Navigate to a page that shows all appointments
+      navigate("/"); // Navigate to a page that shows all appointments
     }
   };
 

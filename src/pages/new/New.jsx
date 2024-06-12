@@ -119,6 +119,7 @@ const New = ({ inputs, title }) => {
         <Navbar />
         <div className="top">
           <h1>{title}</h1>
+          <button className="toggleNetworkBtn" onClick={toggleNetwork}>Toggle Network</button>
         </div>
         <div className="bottom">
           <div className="left">
@@ -155,9 +156,8 @@ const New = ({ inputs, title }) => {
                   onChange={handleInput}/>
                 </div>
               ))}
-              <button  type="submit">Send</button>
+              <button className="submitBtn" type="submit">Send</button>
             </form>
-            <button onClick={toggleNetwork}>Toggle Network</button>
           </div>
         </div>
       </div>
