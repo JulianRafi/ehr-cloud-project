@@ -119,7 +119,7 @@ const Datatable = () => {
     <div className="datatable">
       <div className="datatableTitle">
         Add New User
-        <button onClick={toggleNetwork} className="link"> {network ? (<>Online</>) : (<>Offline</>)} </button>
+        <button onClick={toggleNetwork} className={`link ${network ? 'online' : 'offline'}`}> {network ? (<>Online</>) : (<>Offline</>)} </button>
         <button onClick={fetchData} className="link"> {status ? (<>From Cache</>) : (<>From Cloud</>)} </button>
         {!adminList.includes(auth.currentUser?.uid) ? (<></>) : (
         <Link to="/users/new" className="link">

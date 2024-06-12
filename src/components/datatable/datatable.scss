@@ -48,17 +48,17 @@
         background-color: #0157b8;
         box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
         transform: translateY(-2px);
+          &.online {
+            background-color: #0157b8;
+            color: white;
+          }
+        
+          &.offline {
+            background-color: red;
+            color: white;
+          }
       }
 
-      &.online {
-        background-color: #0157b8;
-        color: white;
-      }
-    
-      &.offline {
-        background-color: red;
-        color: white;
-      }
       // text-decoration: none;
       // color: green;
       // font-size: 16px;
@@ -137,19 +137,19 @@
 
 .datagrid {
   .MuiDataGrid-root {
-    background-color: #f0f0f0;  // Set the desired background color
-    color: #333;  // Set the text color
+    background-color: #f0f0f0;
+    color: #333; 
   }
 
   .MuiDataGrid-row {
     &:nth-child(even) {
-      background-color: #e0e0e0;  // Set alternating row color
+      background-color: #f2f1f1;
     }
   }
 
   .MuiDataGrid-columnHeaders {
-    background-color: #0157b8;  // Set the header background color
-    color: white;  // Set the header text color
+    background-color: #0157b8;
+    color: white; 
   }
   
   .action-buttons {
@@ -158,11 +158,11 @@
     justify-content: center;
 
     .delete-icon {
-      color: #f44336;  // Set the delete icon color
+      color: #f44336;
       cursor: pointer;
 
       &:hover {
-        color: #d32f2f;  // Change color on hover
+        color: #d32f2f;
       }
     }
   }
