@@ -56,13 +56,7 @@ const Navbar = ({email}) => {
                 <a href="#" className="nav-link" onClick={() => navigate("/")}>Home</a>
               </li>
               <li className="hideOnMobile">
-                <a href="#" className="nav-link" onClick={() => {
-                  const email = localStorage.getItem("loggedInUserEmail");
-                  if (email) {
-                    navigate(`/users?email=${email}`);
-                  } else {
-                  }
-                }}>Users</a>
+                <a href="#" className="nav-link" onClick={() => navigate("/users")}>Records</a>
               </li>
               <li className="hideOnMobile">
                 <a href="#" className="nav-link">Procedures</a>
