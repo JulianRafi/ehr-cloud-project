@@ -5,14 +5,21 @@ import Widget from "../../components/widget/Widget";
 import Featured from "../../components/featured/Featured";
 import Chart from "../../components/chart/Chart";
 import Table from "../../components/table/Table";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const handleMakeAppointmentClick = () => {
+    navigate('/make-appointment');
+  };
+
   return (
     <div className="home">
-      <Sidebar />
+      {/* <Sidebar /> */}
       <div className="homeContainer">
         <Navbar />
-        <div className="widgets">
+        {/* <div className="widgets">
           <Widget type="user" />
           <Widget type="order" />
           <Widget type="earning" />
@@ -21,9 +28,15 @@ const Home = () => {
         <div className="charts">
           <Featured />
           <Chart title="Last 6 Months (Revenue)" aspect={2 / 1} />
-        </div>
+        </div> */}
         <div className="listContainer">
-          <div className="listTitle">Latest Transactions</div>
+          <div className="listHeader">
+            <p className="listTitle">Latest Appointments</p>
+            <div className="appointmentBtn">
+              <button className="makeAppointmentBtn" onClick={handleMakeAppointmentClick}>Make a new appointment</button>
+            </div>
+          </div>
+          
           <Table />
         </div>
       </div>

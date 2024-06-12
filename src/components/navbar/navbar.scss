@@ -1,71 +1,181 @@
-.navbar {
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+// @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Oxygen", sans-serif;
+}
+
+nav{
+  background-color: white;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul{
+  width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+nav li{
   height: 50px;
-  border-bottom: 0.5px solid rgb(231, 228, 228);
+}
+
+nav a{
+  height: 100%;
+  padding: 0 30px;
+  text-decoration: none;
   display: flex;
   align-items: center;
-  font-size: 14px;
-  color: #555;
+  color: black;
+}
 
-  .wrapper {
-    width: 100%;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+nav a:hover{
+  background-color: #f0f0f0;
+}
 
-    .search {
-      display: flex;
-      align-items: center;
-      border: 0.5px solid lightgray;
-      padding: 3px;
+.logo, .AppName{
+  margin-right: auto;
+}
 
-      input {
-        border: none;
-        outline: none;
-        background: transparent;
+.sidebar{
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 250px;
+  z-index: 999;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
 
-        &::placeholder {
-          font-size: 12px;
-        }
-      }
-    }
+.sidebar li{
+  width: 100%;
+}
 
-    .items {
-      display: flex;
-      align-items: center;
+.sidebar a{
+  width: 100%;
+}
 
-      .item {
-        display: flex;
-        align-items: center;
-        margin-right: 20px;
-        position: relative;
+.menubtn{
+  display: none;
+}
 
-        .icon {
-          font-size: 20px;
-        }
-
-        .avatar {
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-        }
-
-        .counter {
-          width: 15px;
-          height: 15px;
-          background-color: red;
-          border-radius: 50%;
-          color: white;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 10px;
-          font-weight: bold;
-          position: absolute;
-          top: -5px;
-          right: -5px;
-        }
-      }
-    }
+@media(max-width: 800px) {
+  .hideOnMobile{
+    display: none;
+  }
+  .menubtn{
+    display: block;
   }
 }
+
+@media(max-width: 400px){
+  .sidebar{
+    width: 100%;
+  }
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid;
+  background-color: white;
+  padding: 3px;
+  border-radius: 20px;
+  border-color: #0157b8;
+  
+    input {
+      border: none;
+      outline: none;
+      background: white;
+      padding-left: 10px;
+  
+        &::placeholder {
+         font-size: 12px;
+         padding-left: 10px;
+        }
+    }
+}
+
+// .navbar {
+//   height: 50px;
+//   border-bottom: 0.5px solid rgb(231, 228, 228);
+//   display: flex;
+//   align-items: center;
+//   font-size: 14px;
+//   color: #555;
+
+//   .wrapper {
+//     width: 100%;
+//     padding: 20px;
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+
+//     .search {
+//       display: flex;
+//       align-items: center;
+//       border: 0.5px solid lightgray;
+//       padding: 3px;
+
+//       input {
+//         border: none;
+//         outline: none;
+//         background: transparent;
+
+//         &::placeholder {
+//           font-size: 12px;
+//         }
+//       }
+//     }
+
+//     .logout {
+//       display: flex;
+//       align-items: center;
+
+//       .logoutbtn {
+//         display: flex;
+//         align-items: center;
+//         margin-right: 20px;
+//         position: relative;
+
+//         .icon {
+//           font-size: 20px;
+//         }
+
+//         .avatar {
+//           width: 30px;
+//           height: 30px;
+//           border-radius: 50%;
+//         }
+
+//         .counter {
+//           width: 15px;
+//           height: 15px;
+//           background-color: red;
+//           border-radius: 50%;
+//           color: white;
+//           display: flex;
+//           align-items: center;
+//           justify-content: center;
+//           font-size: 10px;
+//           font-weight: bold;
+//           position: absolute;
+//           top: -5px;
+//           right: -5px;
+//         }
+//       }
+//     }
+//   }
+// }
