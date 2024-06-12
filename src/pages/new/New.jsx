@@ -1,21 +1,19 @@
 import "./new.scss";
-// import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useEffect, useState } from "react";
 import { addDoc, collection, doc, serverTimestamp, setDoc } from "firebase/firestore"; 
 import { auth, db, storage } from "../../firebase";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { disableNetwork, enableNetwork } from "firebase/firestore"; 
 import { useNavigate } from "react-router-dom";
 
 const New = ({ inputs, title }) => {
-  const [users, setUsers] = useState([]);
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
   const [per, setPerc] = useState(null);
   const [network, setNetwork] = useState(1);
+  const [currentId, setCurrentId] = useState(null);
 
   const navigate = useNavigate();
  
@@ -30,9 +28,15 @@ const New = ({ inputs, title }) => {
       const storageRef = ref(storage, file.name);
       const uploadTask = uploadBytesResumable(storageRef, file);
 
+      // Register three observers:
+      // 1. 'state_changed' observer, called any time the state changes
+      // 2. Error observer, called on failure
+      // 3. Completion observer, called on successful completion
       uploadTask.on(
         'state_changed', 
         (snapshot) => {
+          // Observe state change events such as progress, pause, and resume
+          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log('Upload is ' + progress + '% done');
           setPerc(progress)
@@ -48,12 +52,19 @@ const New = ({ inputs, title }) => {
           }
         }, 
         (error) => {
+          // Handle unsuccessful uploads
         }, 
         () => {
+          // Handle successful uploads on complete
+          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setData((prev=>({...prev, img:downloadURL})))
             console.log('File available at', downloadURL);
+            setDoc(doc(db, "users", currentId), {
+              img:downloadURL
+            })
           });
+
         }
       );
       
@@ -88,6 +99,7 @@ const New = ({ inputs, title }) => {
 
   const handleAdd = async(e) =>{
     if (network) {
+      setCurrentId(e.target.id)
       e.preventDefault()
       // const res = await signInWithEmailAndPassword(auth, data.email, data.password);
       await addDoc(collection(db, "users", e.target.id), {
@@ -102,8 +114,9 @@ const New = ({ inputs, title }) => {
   }
   return (
     <div className="new">
+      {/* <Sidebar /> */}
       <div className="newContainer">
-        <Navbar/>
+        <Navbar />
         <div className="top">
           <h1>{title}</h1>
         </div>
@@ -142,7 +155,7 @@ const New = ({ inputs, title }) => {
                   onChange={handleInput}/>
                 </div>
               ))}
-              <button type="submit">Send</button>
+              <button  type="submit">Send</button>
             </form>
             <button onClick={toggleNetwork}>Toggle Network</button>
           </div>

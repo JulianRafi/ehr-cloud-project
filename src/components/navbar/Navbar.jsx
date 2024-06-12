@@ -56,7 +56,7 @@ const Navbar = ({email}) => {
                 <a href="#" className="nav-link" onClick={() => navigate("/home")}>Home</a>
               </li>
               <li className="hideOnMobile">
-                <a href="#" className="nav-link" onClick={handleUsersClick}>Users</a>
+                <a href="#" className="nav-link" onClick={() => navigate("`/users?email=${email}`")}>Users</a>
               </li>
               <li className="hideOnMobile">
                 <a href="#" className="nav-link">Procedures</a>
