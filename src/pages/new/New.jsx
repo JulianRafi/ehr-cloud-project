@@ -15,6 +15,7 @@ const New = ({ inputs, title }) => {
   const [data, setData] = useState({});
   const [per, setPerc] = useState(null);
   const [network, setNetwork] = useState(1);
+  const [currentId, setCurrentId] = useState(null);
 
   const navigate = useNavigate();
  
@@ -61,7 +62,11 @@ const New = ({ inputs, title }) => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setData((prev=>({...prev, img:downloadURL})))
             console.log('File available at', downloadURL);
+            setDoc(doc(db, "users", currentId), {
+              img:downloadURL
+            })
           });
+
         }
       );
       
@@ -96,6 +101,7 @@ const New = ({ inputs, title }) => {
 
   const handleAdd = async(e) =>{
     if (network) {
+      setCurrentId(e.target.id)
       e.preventDefault()
       // const res = await signInWithEmailAndPassword(auth, data.email, data.password);
       await addDoc(collection(db, "users", e.target.id), {
