@@ -6,6 +6,7 @@ import { signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { auth, db } from "../../firebase"
 import { useNavigate } from "react-router-dom";
+import Procedures from "../../pages/procedures/procedures";
 
 const Navbar = ({email}) => {
   const { dispatch } = useContext(DarkModeContext);
@@ -41,6 +42,7 @@ const Navbar = ({email}) => {
               <li className="logo">
                 <a href="#" className="nav-logo">
                   <img
+                      onClick={() => navigate("/")}
                       height="40px" viewBox="0 -960 960 960" width="80px"
                       src="healthsync.png"
                       alt=""
@@ -65,7 +67,7 @@ const Navbar = ({email}) => {
                 }}>Users</a>
               </li>
               <li className="hideOnMobile">
-                <a href="#" className="nav-link">Procedures</a>
+                <a href="#" className="nav-link" onClick={() => navigate("/procedures")}>Procedures</a>
               </li>
               <li className="hideOnMobile">
                 <a href="#" className="nav-link">About Us</a>
@@ -102,7 +104,7 @@ const Navbar = ({email}) => {
                 }}>Users</a>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link">Procedures</a>
+                <a href="#" className="nav-link" onClick={() => navigate("/procedures")}>Procedures</a>
               </li>
               <li className="nav-item">
                 <a href="#" className="nav-link">About Us</a>

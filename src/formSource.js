@@ -9,13 +9,13 @@ export const userInputs = [
       id: "displayName",
       label: "Patient Name",
       type: "text",
-      placeholder: "Julian Rafi",
+      placeholder: "Full Name",
     },
     {
       id: "email",
       label: "Email",
       type: "mail",
-      placeholder: "julianrafi@gmail.com",
+      placeholder: "Working Email",
     },
     // {
     //   id: "password",

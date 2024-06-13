@@ -120,7 +120,7 @@ const Edit = ({ inputs, title, userData }) => {
           </div>
           <div className="right">
             <form onSubmit={handleAdd}>
-              <div className="formInput">
+              <div className="formInputImg">
                 <label htmlFor="file">
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
                 </label>

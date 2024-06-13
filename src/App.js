@@ -11,6 +11,7 @@ import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import MakeAppointment from './pages/appointment/MakeAppointment';
+import Procedures from "./pages/procedures/procedures";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -24,6 +25,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="/make-appointment" element={<MakeAppointment />} />
+            <Route path="procedures" element={<Procedures />} />
             <Route path="users">
               <Route index element={<List />} />
               <Route path=":userId" element={<Single />} />
