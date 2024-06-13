@@ -16,9 +16,8 @@ const Login = () => {
 
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
-        navigate(`/users?email=${email}`); // Pass email as a query parameter
+        navigate("/users"); 
       })
       .catch((error) => {
         setError(true);

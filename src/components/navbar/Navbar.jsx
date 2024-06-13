@@ -42,7 +42,6 @@ const Navbar = ({email}) => {
               <li className="logo">
                 <a href="#" className="nav-logo">
                   <img
-                      onClick={() => navigate("/")}
                       height="40px" viewBox="0 -960 960 960" width="80px"
                       src="healthsync.png"
                       alt=""
@@ -58,13 +57,7 @@ const Navbar = ({email}) => {
                 <a href="#" className="nav-link" onClick={() => navigate("/")}>Home</a>
               </li>
               <li className="hideOnMobile">
-                <a href="#" className="nav-link" onClick={() => {
-                  const email = localStorage.getItem("loggedInUserEmail");
-                  if (email) {
-                    navigate(`/users?email=${email}`);
-                  } else {
-                  }
-                }}>Users</a>
+                <a href="#" className="nav-link" onClick={() => navigate("/users")}>Records</a>
               </li>
               <li className="hideOnMobile">
                 <a href="#" className="nav-link" onClick={() => navigate("/procedures")}>Procedures</a>
