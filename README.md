@@ -27,11 +27,11 @@ Offline Support: Firebase
 
 # How to use
 
-### git clone https://github.com/JulianRafi/ehr-cloud-project.git
+### `git clone https://github.com/JulianRafi/ehr-cloud-project.git`
 
 This command will clone the repository into your local machine. Make sure to go to the directory using **'cd ehr-cloud-project'**
 
-### npm install
+### `npm install`
 After going to the ehr-cloud-project directory, start the npm installation. This command will read the package.json file and install all the listed dependencies, setting up the project for development and ensuring that all required packages are available locally.
 
 ### `npm start`
