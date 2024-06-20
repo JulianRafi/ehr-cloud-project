@@ -59,7 +59,7 @@ const Navbar = ({email}) => {
                 <a href="#" className="nav-link" onClick={() => navigate("/users")}>Records</a>
               </li>
               <li className="hideOnMobile">
-                <a href="#" className="nav-link">Procedures</a>
+                <a href="#" className="nav-link" onClick={() => navigate("/procedures")}>Procedures</a>
               </li>
               <li className="hideOnMobile">
                 <a href="#" className="nav-link">About Us</a>
@@ -96,7 +96,7 @@ const Navbar = ({email}) => {
                 }}>Users</a>
               </li>
               <li className="nav-item">
-                <a href="#" className="nav-link">Procedures</a>
+                <a href="#" className="nav-link" onClick={() => navigate("/procedures")}>Procedures</a>
               </li>
               <li className="nav-item">
                 <a href="#" className="nav-link">About Us</a>

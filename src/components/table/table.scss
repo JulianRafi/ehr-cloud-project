@@ -18,12 +18,27 @@
     // }
   }
 
+  .MuiTableHead-root{
+    background-color: #0157b8;
+  }
+
   .MuiTable-root {
     min-width: 650px;
   }
 
-  .tableCell {
+  .MuiTableCell-head{
+    color: white;
     font-weight: bold;
+  }
+
+  .MuiTableCell-body{
+    &:nth-child(even){
+      background-color: #f2f1f1;
+    }
+  }
+
+  .tableCell {
+    font-weight: normal;
     &.status {
       &.pending {
         color: orange;
@@ -36,18 +51,18 @@
       }
     }
 
-  .status {
-    padding: 5px;
-    border-radius: 5px;
+    .status {
+      padding: 5px;
+      border-radius: 5px;
 
-    &.Approved {
-      color: green;
-      background-color: rgba(0, 128, 0, 0.151);
-    }
-    &.Pending {
-      color: goldenrod;
-      background-color: rgba(189, 189, 3, 0.103);
+      &.Approved {
+        color: green;
+        background-color: rgba(0, 128, 0, 0.151);
+      }
+      &.Pending {
+        color: goldenrod;
+        background-color: rgba(189, 189, 3, 0.103);
+      }
     }
   }
-}
 }

@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
+
+$brand-color: #0157b8;
+$brand-color-light: lighten($brand-color, 20%);
+$brand-color-dark: darken($brand-color, 20%);
+$background-color: #ffffff;
+
+
+body {
+  font-family: "Oxygen", sans-serif;
+  background-color: $background-color;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+.container {
+  padding: 20px;
+  background-color: $background-color;
+}
+
+h1 {
+  padding-top: 50px;
+  color: $brand-color;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+h2 {
+  color: $brand-color-dark;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.card {
+  background-color: $background-color;
+  border: 1px solid $brand-color-light;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+
+  &:hover {
+    border-color: $brand-color;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}

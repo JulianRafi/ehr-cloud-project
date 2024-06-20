@@ -14,7 +14,12 @@ const MakeAppointment = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       const querySnapshot = await getDocs(collection(db, "users"));
-      const usersList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      const uniqueUsers = new Map(); // Use a Map to store unique users based on email or ID
+      querySnapshot.forEach(doc => {
+        const user = { id: doc.id, ...doc.data() };
+        uniqueUsers.set(user.email, user); // Store users by email to ensure uniqueness
+      });
+      const usersList = Array.from(uniqueUsers.values()); // Convert Map values back to an array
       setUsers(usersList);
     };
     
