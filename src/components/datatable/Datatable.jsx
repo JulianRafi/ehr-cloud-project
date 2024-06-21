@@ -1,6 +1,5 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { Modal } from '@mui/material';
 import { userColumns, userRows } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -149,4 +148,3 @@ const Datatable = () => {
 
 export default Datatable;
 
-// how do i hide add new link if (auth.currentUser.email == "root@mail.com")
