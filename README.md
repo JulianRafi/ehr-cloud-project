@@ -44,6 +44,7 @@ You may also see any lint errors in the console.
 
 ### Administrator access
 Username: admin@mail.com
+
 Password: 123456
 
 # Contributors
