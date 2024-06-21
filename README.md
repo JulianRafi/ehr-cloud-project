@@ -42,6 +42,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+### Administrator access
+Username: admin@mail.com
+Password: 123456
+
 # Contributors
 <img src="https://media.licdn.com/dms/image/D5603AQE9vkCK-IFasw/profile-displayphoto-shrink_800_800/0/1714238782648?e=1723680000&v=beta&t=hHsdN7PYr057QbC8wFoNgtDD3GyeHADxAsgHfmT37fE" width="60px;"/><br /><sub>[JulianRafi](https://github.com/JulianRafi)
 
